@@ -11262,5 +11262,42 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+/* ===============================
+   Experience icon replacement
+   =============================== */
+
+   .exp-icon {
+    position: relative;
+    font-size: 0;              /* 이모지 숨기기 */
+    width: 24px;
+    height: 24px;
+  
+    display: flex;             
+    align-items: flex-start;   
+    justify-content: center;
+  }
+  
+  /* LAIT */
+  .exp-icon.lait::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    display: block;
+  
+    background: url("resrc/LAIT.png") no-repeat center;
+    background-size: contain;
+  }
+  
+  /* AMI Lab */
+  .exp-icon.amilab::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    display: block;
+  
+    background: url("resrc/AMILab.png") no-repeat center;
+    background-size: contain;
+  }
+  
 
 /*# sourceMappingURL=bootstrap.css.map */
