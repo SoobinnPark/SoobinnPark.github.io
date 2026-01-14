@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Park Subin</title>
-    <link rel="icon" type="image/x-icon" href="./resrc/moon-fill.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Park Subin</title>
+  <link rel="icon" type="image/x-icon" href="./resrc/moon-fill.svg">
 
-    <link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="./css/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="./css/bootstrap.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 </head>
 
 <body class="bg-light">
 
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark shadow-light ps-5 pe-5">
   <div class="container-fluid">
-    <a class="navbar-brand fw-bolder fs-4" href="#"> Park Subin </a>
+    <a class="navbar-brand fw-bolder fs-4" href="#">Park Subin</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -24,157 +24,200 @@
         <a class="nav-link active fw-bold" href="#">Home</a>
         <a class="nav-link fw-bold" href="#">About</a>
         <a class="nav-link fw-bold" href="#publication">Publication</a>
-        <button class="btn btn-sm btn-outline-info" onclick="toggleDark()" style="border:none;">☾</button>
+        <button class="btn btn-sm btn-outline-info" type="button" onclick="toggleDark()" style="border:none;">☾</button>
       </div>
     </div>
   </div>
 </nav>
 
 <div class="container-fluid mt-5" style="width:80%;">
-<div class="row">
 
-<div class="col-sm-3">
+  <div class="row">
+    <div class="col-sm-3">
 
-  <div class="row justify-content-center g-1">
-    <img class="my-pic img-thumbnail" src="./resrc/SBP.jpg" alt="">
+      <div class="row justify-content-center g-1">
+        <img class="my-pic img-thumbnail" src="./resrc/SBP.jpg" alt="">
+      </div>
+
+      <div class="row text-center mt-3 g-0">
+        <h5 class="fw-bold">Park Subin</h5>
+        <h6>Intern</h6>
+        <strong class="small">
+          <p>Advanced Machine Intelligence Lab (AMI Lab.)<br>@ KAIST</p>
+        </strong>
+      </div>
+
+      <div class="text-center mt-2 mb-3">
+        <a class="me-2" href="https://github.com/SoobinnPark" target="_blank" rel="noopener noreferrer">
+          <i class="bi-github" style="font-size:2rem;color:cornflowerblue;"></i>
+        </a>
+        <a class="me-2" href="https://www.linkedin.com/in/parksubinn" target="_blank" rel="noopener noreferrer">
+          <i class="bi-linkedin" style="font-size:2rem;color:cornflowerblue;"></i>
+        </a>
+      </div>
+
+      <div class="text-center mb-3">
+        <a class="btn btn-sm btn-outline-info" href="./resrc/ParkSubin_CV.pdf" download>
+          Download CV
+        </a>
+      </div>
+
+    </div>
+
+    <div class="col-sm">
+
+      <div class="row g-0">
+        Please contact me for the detailed information.
+        <div class="mt-2">
+          <button class="btn btn-sm btn-outline-info"
+                  data-bs-toggle="tooltip"
+                  title="Click to copy e-mail"
+                  onclick="copy()">
+            qkrtnqls1368@gmail.com
+          </button>
+        </div>
+      </div>
+
+      <div class="row mt-4 g-0">
+        <h5 class="fw-bold">Interests</h5>
+        <nav aria-label="breadcrumb" style="--bs-breadcrumb-divider:'|';">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">3D Reconstruction</li>
+            <li class="breadcrumb-item">3D Human</li>
+            <li class="breadcrumb-item">Inverse Problem</li>
+            <li class="breadcrumb-item">Generative Models</li>
+          </ol>
+        </nav>
+      </div>
+
+      <div class="row mt-4 g-0">
+        <div class="col-sm g-0">
+          <h5 class="fw-bold">Experience</h5>
+
+          <div class="row mb-2">
+            <div class="col-1 me-1">&#x1F3AF;</div>
+            <div class="col small">
+              <div class="row"><strong class="px-0">Intern</strong></div>
+              <div class="row">Korea Advanced Institute of Science and Technology, KAIST</div>
+              <div class="row">Advanced Machine Intelligence Lab (AMI Lab.)</div>
+              <div class="row">2025.06 - Current</div>
+            </div>
+          </div>
+
+          <div class="row mb-2">
+            <div class="col-1 me-1">&#x1F3AF;</div>
+            <div class="col small text-muted">
+              <div class="row"><strong class="px-0">Intern</strong></div>
+              <div class="row">Ulsan National Institute of Science and Technology, UNIST</div>
+              <div class="row">Lab. of Advanced Imaging Tech. (LAIT)</div>
+              <div class="row">2024.07 ~ 2025.06</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm g-0">
+          <h5 class="fw-bold">Education</h5>
+
+          <div class="row mb-2">
+            <div class="col-1 me-1">&#127891;</div>
+            <div class="col text-muted small">
+              <div class="row"><strong class="px-0">B.S.</strong></div>
+              <div class="row">Ulsan National Institute of Science and Technology, UNIST</div>
+              <div class="row">Electrical Engineering, EE</div>
+              <div class="row">2020.03 ~ 2026.02</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 
-  <div class="row text-center mt-3 g-0">
-    <h5 class="fw-bold">Park Subin</h5>
-    <h6>Intern</h6>
-    <strong class="small">
-      <p>Advanced Machine Intelligence Lab (AMI Lab.)<br>@ KAIST</p>
-    </strong>
-  </div>
-
-  <div class="text-center mt-2 mb-3">
-    <a class="me-2" href="https://github.com/SoobinnPark" target="_blank">
-      <i class="bi-github" style="font-size:2rem;color:cornflowerblue;"></i>
-    </a>
-    <a class="me-2" href="https://www.linkedin.com/in/parksubinn" target="_blank">
-      <i class="bi-linkedin" style="font-size:2rem;color:cornflowerblue;"></i>
-    </a>
-  </div>
-
-  <div class="text-center mb-3">
-    <a class="btn btn-sm btn-outline-info" href="./resrc/ParkSubin_CV.pdf" download>Download CV</a>
-  </div>
-
-</div>
-
-<div class="col-sm">
-
-  <div class="row g-0">
-    Please contact me for the detailed information.
-    <div class="mt-2">
-      <button class="btn btn-sm btn-outline-info" data-bs-toggle="tooltip"
-        title="Click to copy e-mail" onclick="copy()">
-        qkrtnqls1368@gmail.com
+  <div class="row mt-5">
+    <div class="col-sm-3 text-center">
+      <h3 id="publication">Publication</h3>
+      <button id="controlAll"
+              class="btn btn-outline-danger w-50 mb-1"
+              type="button"
+              target="#VFM"
+              onclick="changeButtonText(this.getAttribute('target'))">
+        Open All
       </button>
     </div>
-  </div>
 
-  <div class="row mt-4 g-0">
-    <h5 class="fw-bold">Interests</h5>
-    <nav aria-label="breadcrumb" style="--bs-breadcrumb-divider:'|';">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">3D Reconstruction</li>
-        <li class="breadcrumb-item">3D Human</li>
-        <li class="breadcrumb-item">Inverse Problem</li>
-        <li class="breadcrumb-item">Generative Models</li>
-      </ol>
-    </nav>
-  </div>
-
-</div>
-</div>
-
-<!-- Publication -->
-<div class="row mt-5">
-  <div class="col-sm-3 text-center">
-    <h3 id="publication">Publication</h3>
-    <button id="controlAll" class="btn btn-outline-danger w-50"
-      target="#VFM" onclick="changeButtonText(this.getAttribute('target'))">
-      Open All
-    </button>
-  </div>
-
-  <div class="col-sm">
-    <hr>
-    <h5><strong>광학 수차 모델을 통한 확산 사후 샘플링 기반 이광자 현미경 이미지 복원</strong></h5>
-    <p>Seongwon Cho*, <b>Subin Park*</b>, Jaejun Yoo<br>
-        제37회 영상처리 및 이해에 관한 워크샵, IPIU 2025</p>
-    <div class="collapse mb-1" id="VFM">
-      <div class="card card-body bg-dark"></div>
+    <div class="col-sm">
+      <hr>
+      <h5><strong>광학 수차 모델을 통한 확산 사후 샘플링 기반 이광자 현미경 이미지 복원</strong></h5>
+      <p>Seongwon Cho*, Subin Park*, Jaejun Yoo<br>
+          제37회 영상처리 및 이해에 관한 워크샵, IPIU 2025</p>
+      <div class="collapse mb-1" id="VFM">
+        <div class="card card-body bg-dark"></div>
+      </div>
     </div>
   </div>
-</div>
 
 </div>
 
-<script src="./js/jquery-latest.js"></script>
-<script src="./js/popper.min.js"></script>
-<script src="./js/bootstrap.js"></script>
+<!-- JS (render-blocking 제거) -->
+<script src="./js/jquery-latest.js" defer></script>
+<script src="./js/popper.min.js" defer></script>
+<script src="./js/bootstrap.js" defer></script>
 
-<script>
+<script defer>
 function changeButtonText(ids){
   const btn = document.getElementById("controlAll");
   const targets = ids.replaceAll('#','').split(',');
 
   if (btn.innerText === "Close All"){
-    for (let i = 0; i < targets.length; i++){
-      const el = document.getElementById(targets[i]);
-      if (el && $(el).is(":visible")) $(el).collapse("toggle");
-    }
+    targets.forEach(id=>{
+      const el = document.getElementById(id);
+      if (el && el.classList.contains("show")){
+        bootstrap.Collapse.getOrCreateInstance(el).hide();
+      }
+    });
     btn.innerText = "Open All";
   } else {
-    for (let i = 0; i < targets.length; i++){
-      const el = document.getElementById(targets[i]);
-      if (el && $(el).is(":hidden")) $(el).collapse("toggle");
-    }
+    targets.forEach(id=>{
+      const el = document.getElementById(id);
+      if (el && !el.classList.contains("show")){
+        bootstrap.Collapse.getOrCreateInstance(el).show();
+      }
+    });
     btn.innerText = "Close All";
   }
 }
 
-/* ===== (4) copy ===== */
-function copyToClipboard(val){
+function copy(){
   const t = document.createElement("textarea");
+  t.value = "qkrtnqls1368@gmail.com";
   document.body.appendChild(t);
-  t.value = val;
   t.select();
   document.execCommand("copy");
   document.body.removeChild(t);
 }
-function copy(){
-  copyToClipboard("qkrtnqls1368@gmail.com");
-}
-</script>
 
-<script>
 function toggleDark(){
   const darkElems = Array.from(document.getElementsByClassName("bg-dark"));
+
   if (darkElems.length <= 1){
-    const lights = Array.from(document.getElementsByClassName("bg-light"));
-    lights.forEach(el=>{
+    Array.from(document.getElementsByClassName("bg-light")).forEach(el=>{
       el.classList.remove("bg-light");
       el.classList.add("bg-dark","text-white");
     });
   } else {
     darkElems.forEach(el=>{
       if (el.classList.contains("navbar")) return;
-      el.classList.remove("bg-dark","text-white");
       el.classList.add("bg-light");
+      el.classList.remove("bg-dark","text-white");
     });
   }
 }
-</script>
 
-<script>
-var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-tooltipTriggerList.map(el => new bootstrap.Tooltip(el));
+document.addEventListener("DOMContentLoaded", ()=>{
+  document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    .forEach(el=> new bootstrap.Tooltip(el));
+});
 </script>
 
 </body>
 </html>
-
-
