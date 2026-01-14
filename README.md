@@ -1,1 +1,1 @@
-# SoobinnPark.github.io
+# soobinpark.github.io
