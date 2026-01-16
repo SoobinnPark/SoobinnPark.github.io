@@ -236,10 +236,54 @@ document.addEventListener("DOMContentLoaded", ()=>{
   document.querySelectorAll('[data-bs-toggle="tooltip"]')
     .forEach(el=> new bootstrap.Tooltip(el));
 });
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * --------------------------------------------------------------------------
+   */
+  const index_umd = {
+    Alert,
+    Button,
+    Carousel,
+    Collapse,
+    Dropdown,
+    Modal,
+    Offcanvas,
+    Popover,
+    ScrollSpy,
+    Tab,
+    Toast,
+    Tooltip
+  };
+
+  return index_umd;
+
+}));
+
+function changeButtonText(selector){
+  const btn = document.getElementById("controlAll");
+  const elements = document.querySelectorAll(selector);
+
+  if (btn.innerText === "Close All") {
+    elements.forEach(el => {
+      if (el.classList.contains("show")) {
+        bootstrap.Collapse.getOrCreateInstance(el).hide();
+      }
+    });
+    btn.innerText = "Open All";
+  } else {
+    elements.forEach(el => {
+      if (!el.classList.contains("show")) {
+        bootstrap.Collapse.getOrCreateInstance(el).show();
+      }
+    });
+    btn.innerText = "Close All";
+  }
+}
+//# sourceMappingURL=bootstrap.js.map
 </script>
 
 </body>
 </html>
+
 
 
 
