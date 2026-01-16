@@ -11266,15 +11266,16 @@ textarea.form-control-lg {
    Experience icon replacement
    =============================== */
 
-   .exp-icon {
+  .exp-icon {
     position: relative;
-    font-size: 0;              /* 이모지 숨기기 */
     width: 24px;
     height: 24px;
-  
-    display: flex;             
-    align-items: flex-start;   
+
+    display: flex;
+    align-items: center;     /* 핵심 */
     justify-content: center;
+
+    flex: 0 0 24px;          /* Bootstrap col 영향 차단 */
   }
   
   /* LAIT */
@@ -11301,4 +11302,5 @@ textarea.form-control-lg {
   
 
 /*# sourceMappingURL=bootstrap.css.map */
+
 
