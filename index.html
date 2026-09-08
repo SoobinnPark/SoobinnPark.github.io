@@ -1,247 +1,413 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Park Subin</title>
-  <link rel="icon" type="image/x-icon" href="./resrc/moon-fill.svg">
+  <meta name="description" content="Park Subin — M.S. student at KAIST AMI Lab. 3D reconstruction, 3D human modeling, generative models.">
+  <link rel="icon" type="image/svg+xml" href="./resrc/moon-fill.svg">
 
-  <link rel="stylesheet" href="./css/bootstrap.css">
-  <link rel="stylesheet" href="./css/style.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:        #fbfbfc;
+      --surface:   #ffffff;
+      --ink:       #1c1d21;
+      --muted:     #6b6f76;
+      --faint:     #9aa0a6;
+      --line:      #e7e7ec;
+      --accent:    #2f4b8f;
+      --accent-hi: #3a5db0;
+      --chip:      #f1f2f5;
+      --maxw:      860px;
+    }
+    html[data-theme="dark"]{
+      --bg:        #131417;
+      --surface:   #1a1c20;
+      --ink:       #e6e7ea;
+      --muted:     #a2a7b0;
+      --faint:     #767b83;
+      --line:      #2a2d33;
+      --accent:    #9db6ff;
+      --accent-hi: #b9caff;
+      --chip:      #23262c;
+    }
+
+    *{ box-sizing:border-box; }
+    html{ -webkit-text-size-adjust:100%; }
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--ink);
+      font-family:"Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      font-size:16px;
+      line-height:1.62;
+      -webkit-font-smoothing:antialiased;
+      transition:background .2s ease, color .2s ease;
+    }
+    .wrap{
+      max-width:var(--maxw);
+      margin:0 auto;
+      padding:72px 24px 96px;
+    }
+    a{ color:var(--accent); text-decoration:none; }
+    a:hover{ color:var(--accent-hi); text-decoration:underline; text-underline-offset:2px; }
+    :focus-visible{ outline:2px solid var(--accent); outline-offset:2px; border-radius:3px; }
+
+    /* ---------- Intro ---------- */
+    .intro{
+      display:flex;
+      gap:32px;
+      align-items:flex-start;
+    }
+    .intro figure{ margin:0; flex:0 0 auto; }
+    .intro img{
+      width:148px; height:148px;
+      object-fit:cover;
+      border-radius:12px;
+      border:1px solid var(--line);
+    }
+    .intro .who{ flex:1 1 auto; min-width:0; }
+    h1{
+      font-family:"Newsreader", Georgia, serif;
+      font-weight:500;
+      font-size:2.3rem;
+      line-height:1.1;
+      letter-spacing:-.01em;
+      margin:.1em 0 .15em;
+    }
+    .role{ color:var(--muted); font-size:1.02rem; margin:0 0 .9em; }
+    .role a{ color:var(--muted); text-decoration:underline; text-underline-offset:2px; }
+    .role a:hover{ color:var(--accent); }
+    .bio{ margin:0 0 1.1em; max-width:60ch; }
+    .contact{ display:flex; flex-wrap:wrap; align-items:center; gap:8px 0; font-size:.95rem; }
+    .contact a{ display:inline-flex; align-items:center; gap:6px; padding:0 14px; color:var(--ink); }
+    .contact a:hover{ color:var(--accent); text-decoration:none; }
+    .contact a + a{ border-left:1px solid var(--line); }
+    .contact a:first-child{ padding-left:0; }
+    .contact svg{ width:16px; height:16px; fill:currentColor; opacity:.85; }
+
+    /* ---------- Sections ---------- */
+    section{ margin-top:52px; }
+    h2{
+      font-family:"Newsreader", Georgia, serif;
+      font-weight:500;
+      font-size:1.35rem;
+      margin:0 0 20px;
+      padding-bottom:8px;
+      border-bottom:1px solid var(--line);
+    }
+
+    .keywords{ display:flex; flex-wrap:wrap; gap:8px; margin:0; padding:0; list-style:none; }
+    .keywords li{
+      font-size:.9rem; color:var(--muted);
+      background:var(--chip);
+      border-radius:999px;
+      padding:4px 12px;
+    }
+    .lead{ margin:0 0 14px; max-width:62ch; color:var(--ink); }
+
+    /* ---------- Publications ---------- */
+    .pub{ display:flex; gap:20px; padding:20px 0; border-bottom:1px solid var(--line); }
+    .pub:last-child{ border-bottom:0; }
+    .pub__thumb{
+      flex:0 0 168px; width:168px;
+      align-self:flex-start;
+    }
+    .pub__thumb img{
+      width:100%; display:block;
+      border-radius:8px; border:1px solid var(--line);
+      background:var(--chip);
+    }
+    .pub__body{ flex:1 1 auto; min-width:0; }
+    .pub__title{ font-weight:600; font-size:1.03rem; line-height:1.4; margin:0 0 4px; }
+    .pub__title a{ color:var(--ink); }
+    .pub__title a:hover{ color:var(--accent); }
+    .pub__authors{ color:var(--muted); font-size:.95rem; margin:0 0 3px; }
+    .pub__authors .me{ color:var(--ink); font-weight:600; }
+    .pub__venue{ font-size:.95rem; margin:0 0 8px; }
+    .pub__venue .badge{
+      font-family:"Newsreader", Georgia, serif; font-style:italic;
+      color:var(--muted);
+    }
+    .pub__venue .award{ color:var(--accent); font-weight:500; }
+    .pub__links{ display:flex; flex-wrap:wrap; gap:14px; font-size:.9rem; }
+    .pub__links a{ position:relative; }
+
+    /* ---------- Two column (exp / edu) ---------- */
+    .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:40px; }
+    .grid2 section{ margin-top:0; }
+    .entry{ padding:14px 0; border-bottom:1px solid var(--line); }
+    .entry:last-child{ border-bottom:0; }
+    .entry__role{ font-weight:600; font-size:1rem; margin:0 0 2px; }
+    .entry__org{ font-size:.94rem; margin:0; }
+    .entry__sub{ color:var(--muted); font-size:.9rem; margin:2px 0 0; }
+    .entry__date{ color:var(--faint); font-size:.85rem; margin:4px 0 0; }
+    .entry.past .entry__role{ color:var(--muted); }
+
+    footer{
+      margin-top:64px; padding-top:20px;
+      border-top:1px solid var(--line);
+      color:var(--faint); font-size:.82rem;
+    }
+
+    /* ---------- Theme toggle ---------- */
+    .toggle{
+      position:fixed; top:18px; right:18px;
+      width:38px; height:38px; border-radius:10px;
+      border:1px solid var(--line); background:var(--surface); color:var(--ink);
+      cursor:pointer; font-size:1rem; line-height:1;
+      display:flex; align-items:center; justify-content:center;
+      transition:background .2s ease, border-color .2s ease;
+    }
+    .toggle:hover{ border-color:var(--accent); }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width:640px){
+      .wrap{ padding:52px 18px 72px; }
+      .intro{ flex-direction:column; gap:20px; }
+      .intro img{ width:120px; height:120px; }
+      h1{ font-size:2rem; }
+      .grid2{ grid-template-columns:1fr; gap:36px; }
+      .pub{ flex-direction:column; gap:12px; }
+      .pub__thumb{ flex-basis:auto; width:100%; max-width:280px; }
+    }
+    @media (prefers-reduced-motion:reduce){
+      *{ transition:none !important; }
+    }
+  </style>
 </head>
 
-<body class="bg-light">
+<body>
+  <button class="toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">☾</button>
 
-<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark shadow-light ps-5 pe-5">
-  <div class="container-fluid">
-    <a class="navbar-brand fw-bolder fs-4" href="#">Park Subin</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link active fw-bold" href="#">Home</a>
-        <a class="nav-link fw-bold" href="#publication">Publication</a>
-        <button class="btn btn-sm btn-outline-info" type="button" onclick="toggleDark()" style="border:none;">☾</button>
-      </div>
-    </div>
-  </div>
-</nav>
+  <main class="wrap">
 
-<div class="container-fluid mt-5" style="width:80%;">
-
-  <div class="row">
-    <div class="col-sm-3">
-
-      <div class="row justify-content-center g-1">
-        <img class="my-pic img-thumbnail" src="./resrc/SBP.jpg" alt="">
-      </div>
-
-      <div class="row text-center mt-3 g-0">
-        <h5 class="fw-bold">Park Subin</h5>
-        <h6>M.S. Student</h6>
-        <strong class="small">
-          <p>Advanced Machine Intelligence Lab (AMI Lab.)<br>@ KAIST</p>
-        </strong>
-      </div>
-
-      <div class="text-center mt-2 mb-3">
-        <a class="me-2" href="https://github.com/SoobinnPark" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
-          <i class="bi-github" role="img" aria-label="GitHub" style="font-size: 2rem; color: cornflowerblue;"></i>
-        </a>
-  
-        <a class="me-2" href="https://www.linkedin.com/in/parksubinn" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
-          <i class="bi-linkedin" role="img" aria-label="Linkedin" style="font-size: 2rem; color: cornflowerblue;"></i>
-        </a>
-      </div>
-
-      <div class="text-center mb-3">
-        <a class="btn btn-sm btn-outline-info" href="./resrc/ParkSubin_CV.pdf" download>
-          Download CV
-        </a>
-      </div>
-
-    </div>
-
-    <div class="col-sm">
-
-      <div class="row g-0">
-        Please contact me for the detailed information.
-        <div class="mt-2">
-          <button class="btn btn-sm btn-outline-info"
-                  data-bs-toggle="tooltip"
-                  title="Click to copy e-mail"
-                  onclick="copy()">
-            qkrtnqls1368@gmail.com
-          </button>
-        </div>
-      </div>
-
-      <div class="row mt-4 g-0">
-        <h5 class="fw-bold">Interests</h5>
-        <nav aria-label="breadcrumb" style="--bs-breadcrumb-divider:'|';">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item">3D Reconstruction</li>
-            <li class="breadcrumb-item">3D Human</li>
-            <li class="breadcrumb-item">Inverse Problem</li>
-            <li class="breadcrumb-item">Generative Models</li>
-          </ol>
+    <!-- ==================== INTRO ==================== -->
+    <header class="intro">
+      <figure>
+        <img src="./resrc/SBP.jpg" alt="Park Subin">
+      </figure>
+      <div class="who">
+        <h1>Park Subin</h1>
+        <p class="role">M.S. Student, Advanced Machine Intelligence Lab (AMI Lab) @ KAIST</p>
+        <p class="bio">
+          I am a master's student in the Advanced Machine Intelligence Lab at KAIST. My research focuses on
+          physically grounded 3D/4D reconstruction of humans and scenes from sparse, noisy, and blurred
+          observations &mdash; building high-fidelity digital twins with generative priors.
+        </p>
+        <nav class="contact">
+          <a href="mailto:qkrtnqls1368@gmail.com">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5z"/></svg>
+            Email
+          </a>
+          <a href="./resrc/ParkSubin_CV.pdf">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zm0 2 4 4h-4zM8 13h8v2H8zm0 4h8v2H8z"/></svg>
+            CV
+          </a>
+          <a href="https://github.com/SoobinnPark" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
+            GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/parksubinn" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+            LinkedIn
+          </a>
+          <!-- Add Google Scholar when available:
+          <a href="SCHOLAR_URL" target="_blank" rel="noopener">Scholar</a>
+          -->
         </nav>
       </div>
+    </header>
 
-      <div class="row mt-4 g-0">
-        <div class="col-sm g-0">
-          <h5 class="fw-bold">Experience</h5>
+    <!-- ==================== RESEARCH ==================== -->
+    <section id="research">
+      <h2>Research interests</h2>
+      <p class="lead">
+        Building physically grounded 3D/4D reconstruction of humans and scenes from sparse, noisy, and
+        blurred observations, toward high-fidelity digital twins using generative priors.
+      </p>
+      <ul class="keywords">
+        <li>3D Reconstruction</li>
+        <li>3D Human Modeling</li>
+        <li>Generative Models</li>
+        <li>Inverse Problems</li>
+        <li>Computer Vision</li>
+        <li>Computer Graphics</li>
+      </ul>
+    </section>
 
-          <div class="row mb-2">
-            <div class="me-2 exp-icon amilab">&#x1F3AF;</div>
-            <div class="col small">
-              <div class="row"><strong class="px-0">M.S. Student</strong></div>
-              <div class="row">Korea Advanced Institute of Science and Technology, KAIST</div>
-              <div class="row">Advanced Machine Intelligence Lab (AMI Lab.)</div>
-              <div class="row">2026.08 - Current</div>
-            </div>
-          </div>
+    <!-- ==================== PUBLICATIONS ==================== -->
+    <section id="publications">
+      <h2>Publications</h2>
+      <div id="pubList"></div>
+    </section>
 
-          <div class="row mb-2">
-            <div class="me-2 exp-icon amilab">&#x1F3AF;</div>
-            <div class="col small">
-              <div class="row"><strong class="px-0">Intern</strong></div>
-              <div class="row">Korea Advanced Institute of Science and Technology, KAIST</div>
-              <div class="row">Advanced Machine Intelligence Lab (AMI Lab.)</div>
-              <div class="row">2025.06 - 2026.07</div>
-            </div>
-          </div>
+    <!-- ==================== EXPERIENCE / EDUCATION ==================== -->
+    <div class="grid2">
+      <section id="experience">
+        <h2>Experience</h2>
 
-          <div class="row mb-2">
-            <div class="me-2 exp-icon lait">&#x1F3AF;</div>
-            <div class="col small text-muted">
-              <div class="row"><strong class="px-0">Intern</strong></div>
-              <div class="row">Ulsan National Institute of Science and Technology, UNIST</div>
-              <div class="row">Lab. of Advanced Imaging Tech. (LAIT)</div>
-              <div class="row">2024.07 - 2025.06</div>
-            </div>
-          </div>
+        <div class="entry">
+          <p class="entry__role">M.S. Student</p>
+          <p class="entry__org">KAIST &middot; Advanced Machine Intelligence Lab (AMI Lab)</p>
+          <p class="entry__date">2026.08 &ndash; Current</p>
         </div>
 
-        <div class="col-sm g-0">
-          <h5 class="fw-bold">Education</h5>
-
-          <div class="row mb-2">
-            <div class="col-1 me-1">&#127891;</div>
-            <div class="col small">
-              <div class="row"><strong class="px-0">M.S.</strong></div>
-              <div class="row">Korea Advanced Institute of Science and Technology, KAIST</div>
-              <div class="row">Graduate School of Metaverse</div>
-              <div class="row">2026.08 ~ Current</div>
-            </div>
-          </div>
-
-          <div class="row mb-2">
-            <div class="col-1 me-1">&#127891;</div>
-            <div class="col small text-muted">
-              <div class="row"><strong class="px-0">B.S.</strong></div>
-              <div class="row">Ulsan National Institute of Science and Technology, UNIST</div>
-              <div class="row">Electrical Engineering, EE</div>
-              <div class="row">2020.03 ~ 2026.02</div>
-            </div>
-          </div>
+        <div class="entry">
+          <p class="entry__role">Intern</p>
+          <p class="entry__org">KAIST &middot; Advanced Machine Intelligence Lab (AMI Lab)</p>
+          <p class="entry__date">2025.06 &ndash; 2026.07</p>
         </div>
-      </div>
 
-    </div>
-  </div>
+        <div class="entry past">
+          <p class="entry__role">Intern</p>
+          <p class="entry__org">UNIST &middot; Lab. of Advanced Imaging Tech. (LAIT)</p>
+          <p class="entry__date">2024.07 &ndash; 2025.06</p>
+        </div>
+      </section>
 
-<div class="row mt-5">
-  <div class="col-sm-3 text-center">
-    <h3 id="publication">Publications</h3>
-    <button id="controlAll"
-            class="btn btn-outline-danger w-50 mb-1"
-            type="button"
-            target=".collapse"
-            onclick="changeButtonText(this.getAttribute('target'))">
-      Open All
-    </button>
-  </div>
+      <section id="education">
+        <h2>Education</h2>
 
-  <div class="col-sm">
-    <hr>
+        <div class="entry">
+          <p class="entry__role">M.S. in Metaverse</p>
+          <p class="entry__org">KAIST, Graduate School of Metaverse</p>
+          <p class="entry__sub">Daejeon, Korea</p>
+          <p class="entry__date">2026.08 &ndash; Current</p>
+        </div>
 
-    <!-- International Conference / Journal -->
-    <h5><strong>ELITE: Efficient Gaussian Head Avatar from a Monocular Video via Learned Initialization and
-Test-time Generative Adaptation</strong></h5>
-    <p>
-      Kim Youwang, Lee Hyoseok, <b>Park Subin</b>, Gerard Pons-Moll, Tae-Hyun Oh<br>
-      CVPR, 2026
-    </p>
-    <div class="collapse mb-3" id="pub_int_01">
-      <div class="card card-body bg-dark">
-        <!-- Optional: abstract / links -->
-      </div>
+        <div class="entry past">
+          <p class="entry__role">B.S. in Electrical Engineering</p>
+          <p class="entry__org">UNIST</p>
+          <p class="entry__sub">Ulsan, Korea</p>
+          <p class="entry__date">2020.03 &ndash; 2026.02</p>
+        </div>
+      </section>
     </div>
 
-  </div>
-</div>
+    <footer>
+      &copy; <span id="year"></span> Park Subin
+    </footer>
+  </main>
 
-<!-- JS -->
-<script src="./js/jquery-latest.js" defer></script>
-<script src="./js/popper.min.js" defer></script>
-<script src="./js/bootstrap.js" defer></script>
+  <script>
+  /* =====================================================================
+     PUBLICATIONS  —  add a new paper by adding one object to this list.
+     Newest first. Every field except `title`, `authors`, `venue` is optional.
 
-<script defer>
-function changeButtonText(selector){
-  const btn = document.getElementById("controlAll");
-  const elements = document.querySelectorAll(selector);
+       title   : paper title
+       authors : author line (your name is auto-bolded — see SELF_NAME below)
+       venue   : e.g. "CVPR 2026"
+       year    : sort key (number). Higher = newer = shown first.
+       award   : e.g. "Oral", "Highlight"  (optional, shown in accent)
+       note    : e.g. "* equal contribution" (optional, small muted text)
+       image   : path to a thumbnail, e.g. "./resrc/elite.jpg" (optional)
+       links   : list of { label, url } (optional)
+     ===================================================================== */
+  const SELF_NAME = "Park Subin";
 
-  if (btn.innerText === "Close All") {
-    elements.forEach(el => {
-      if (el.classList.contains("show")) {
-        bootstrap.Collapse.getOrCreateInstance(el).hide();
-      }
-    });
-    btn.innerText = "Open All";
-  } else {
-    elements.forEach(el => {
-      if (!el.classList.contains("show")) {
-        bootstrap.Collapse.getOrCreateInstance(el).show();
-      }
-    });
-    btn.innerText = "Close All";
+  const publications = [
+    {
+      title: "ELITE: Efficient Gaussian Head Avatar from a Monocular Video via Learned Initialization and Test-time Generative Adaptation",
+      authors: "Kim Youwang, Lee Hyoseok, Park Subin, Gerard Pons-Moll, Tae-Hyun Oh",
+      venue: "CVPR 2026",
+      year: 2026,
+      // award: "Highlight",
+      // image: "./resrc/elite.jpg",
+      links: [
+        // { label: "Project", url: "https://..." },
+        // { label: "arXiv",   url: "https://arxiv.org/abs/..." },
+        // { label: "Code",    url: "https://github.com/..." },
+      ]
+    },
+
+    /* ---- TEMPLATE: copy this block for a new paper ----
+    {
+      title: "Paper title here",
+      authors: "First Author, Park Subin, Last Author",
+      venue: "NeurIPS 2027",
+      year: 2027,
+      award: "Oral",
+      note: "* equal contribution",
+      image: "./resrc/mypaper.jpg",
+      links: [
+        { label: "Project", url: "https://..." },
+        { label: "arXiv",   url: "https://arxiv.org/abs/..." },
+        { label: "Code",    url: "https://github.com/..." },
+        { label: "PDF",     url: "https://..." },
+      ]
+    },
+    ---------------------------------------------------- */
+  ];
+
+  function boldSelf(authors){
+    const esc = SELF_NAME.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    return authors.replace(new RegExp(esc, "g"),
+      `<span class="me">${SELF_NAME}</span>`);
   }
-}
 
-function copy(){
-  const t = document.createElement("textarea");
-  t.value = "qkrtnqls1368@gmail.com";
-  document.body.appendChild(t);
-  t.select();
-  document.execCommand("copy");
-  document.body.removeChild(t);
-}
+  function renderPublications(){
+    const host = document.getElementById("pubList");
+    const list = [...publications].sort((a,b)=> (b.year||0)-(a.year||0));
 
-function toggleDark(){
-  const darkElems = Array.from(document.getElementsByClassName("bg-dark"));
+    host.innerHTML = list.map(p => {
+      const titleHtml = (p.links && p.links[0])
+        ? `<a href="${p.links[0].url}" target="_blank" rel="noopener">${p.title}</a>`
+        : p.title;
 
-  if (darkElems.length <= 1){
-    Array.from(document.getElementsByClassName("bg-light")).forEach(el=>{
-      el.classList.remove("bg-light");
-      el.classList.add("bg-dark","text-white");
-    });
-  } else {
-    darkElems.forEach(el=>{
-      if (el.classList.contains("navbar")) return;
-      el.classList.add("bg-light");
-      el.classList.remove("bg-dark","text-white");
-    });
+      const thumb = p.image
+        ? `<div class="pub__thumb"><img src="${p.image}" alt="${p.title.replace(/"/g,'&quot;')}" loading="lazy"></div>`
+        : "";
+
+      const award = p.award ? ` <span class="award">(${p.award})</span>` : "";
+      const note  = p.note  ? `<p class="entry__sub" style="margin-top:2px">${p.note}</p>` : "";
+
+      const links = (p.links && p.links.length)
+        ? `<div class="pub__links">` +
+            p.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener">${l.label}</a>`).join("") +
+          `</div>`
+        : "";
+
+      return `
+        <article class="pub">
+          ${thumb}
+          <div class="pub__body">
+            <p class="pub__title">${titleHtml}</p>
+            <p class="pub__authors">${boldSelf(p.authors)}</p>
+            <p class="pub__venue"><span class="badge">${p.venue}</span>${award}</p>
+            ${links}
+            ${note}
+          </div>
+        </article>`;
+    }).join("");
   }
-}
 
-document.addEventListener("DOMContentLoaded", ()=>{
-  document.querySelectorAll('[data-bs-toggle="tooltip"]')
-    .forEach(el=> new bootstrap.Tooltip(el));
-});
-</script>
+  /* ---------- theme toggle (persists across visits) ---------- */
+  (function(){
+    const root = document.documentElement;
+    const btn  = document.getElementById("themeToggle");
+    let saved;
+    try { saved = localStorage.getItem("theme"); } catch(e){}
+    if(!saved){
+      saved = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+    apply(saved);
+    btn.addEventListener("click", ()=>{
+      apply(root.getAttribute("data-theme") === "dark" ? "light" : "dark");
+    });
+    function apply(t){
+      root.setAttribute("data-theme", t);
+      btn.textContent = t === "dark" ? "☀" : "☾";
+      try { localStorage.setItem("theme", t); } catch(e){}
+    }
+  })();
 
+  document.getElementById("year").textContent = new Date().getFullYear();
+  renderPublications();
+  </script>
 </body>
 </html>
