@@ -59,12 +59,13 @@
     .intro{
       display:flex;
       gap:32px;
-      align-items:flex-start;
+      align-items:stretch;
     }
-    .intro figure{ margin:0; flex:0 0 auto; }
+    .intro figure{ margin:0; flex:0 0 172px; }
     .intro img{
-      width:148px; height:148px;
+      width:100%; height:100%;
       object-fit:cover;
+      object-position:center 20%;
       border-radius:12px;
       border:1px solid var(--line);
     }
@@ -272,7 +273,7 @@
         <h2>Education</h2>
 
         <div class="entry">
-          <p class="entry__role">M.S. in Meta XR</p>
+          <p class="entry__role">M.S. in Metaverse</p>
           <p class="entry__org">KAIST, Graduate School of Metaverse</p>
           <p class="entry__sub">Daejeon, Korea</p>
           <p class="entry__date">2026.08 &ndash; Current</p>
@@ -286,10 +287,6 @@
         </div>
       </section>
     </div>
-
-    <footer>
-      &copy; <span id="year"></span> Park Subin
-    </footer>
   </main>
 
   <script>
@@ -404,7 +401,6 @@
     }
   })();
 
-  document.getElementById("year").textContent = new Date().getFullYear();
   renderPublications();
   </script>
 </body>
