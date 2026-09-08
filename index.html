@@ -22,7 +22,6 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-link active fw-bold" href="#">Home</a>
-        <a class="nav-link fw-bold" href="#">About</a>
         <a class="nav-link fw-bold" href="#publication">Publication</a>
         <button class="btn btn-sm btn-outline-info" type="button" onclick="toggleDark()" style="border:none;">☾</button>
       </div>
@@ -41,7 +40,7 @@
 
       <div class="row text-center mt-3 g-0">
         <h5 class="fw-bold">Park Subin</h5>
-        <h6>Intern</h6>
+        <h6>M.S. Student</h6>
         <strong class="small">
           <p>Advanced Machine Intelligence Lab (AMI Lab.)<br>@ KAIST</p>
         </strong>
@@ -98,10 +97,20 @@
           <div class="row mb-2">
             <div class="me-2 exp-icon amilab">&#x1F3AF;</div>
             <div class="col small">
+              <div class="row"><strong class="px-0">M.S. Student</strong></div>
+              <div class="row">Korea Advanced Institute of Science and Technology, KAIST</div>
+              <div class="row">Advanced Machine Intelligence Lab (AMI Lab.)</div>
+              <div class="row">2026.08 - Current</div>
+            </div>
+          </div>
+
+          <div class="row mb-2">
+            <div class="me-2 exp-icon amilab">&#x1F3AF;</div>
+            <div class="col small">
               <div class="row"><strong class="px-0">Intern</strong></div>
               <div class="row">Korea Advanced Institute of Science and Technology, KAIST</div>
               <div class="row">Advanced Machine Intelligence Lab (AMI Lab.)</div>
-              <div class="row">2025.06 - Current</div>
+              <div class="row">2025.06 - 2026.07</div>
             </div>
           </div>
 
@@ -122,6 +131,16 @@
           <div class="row mb-2">
             <div class="col-1 me-1">&#127891;</div>
             <div class="col small">
+              <div class="row"><strong class="px-0">M.S.</strong></div>
+              <div class="row">Korea Advanced Institute of Science and Technology, KAIST</div>
+              <div class="row">Graduate School of Metaverse</div>
+              <div class="row">2026.08 ~ Current</div>
+            </div>
+          </div>
+
+          <div class="row mb-2">
+            <div class="col-1 me-1">&#127891;</div>
+            <div class="col small text-muted">
               <div class="row"><strong class="px-0">B.S.</strong></div>
               <div class="row">Ulsan National Institute of Science and Technology, UNIST</div>
               <div class="row">Electrical Engineering, EE</div>
@@ -151,7 +170,7 @@
 
     <!-- International Conference / Journal -->
     <h5><strong>ELITE: Efficient Gaussian Head Avatar from a Monocular Video via Learned Initialization and
-TEst-time Generative Adaptation</strong></h5>
+Test-time Generative Adaptation</strong></h5>
     <p>
       Kim Youwang, Lee Hyoseok, <b>Park Subin</b>, Gerard Pons-Moll, Tae-Hyun Oh<br>
       CVPR, 2026
@@ -162,43 +181,29 @@ TEst-time Generative Adaptation</strong></h5>
       </div>
     </div>
 
-    <!-- Domestic Conference -->
-    <h5><strong>광학 수차 모델을 통한 확산 사후 샘플링 기반 이광자 현미경 이미지 복원</strong></h5>
-    <p>
-      Seongwon Cho*, <b>Subin Park*</b>, Jaejun Yoo<br>
-      IPIU (제37회 영상처리 및 이해에 관한 워크샵), 2025
-    </p>
-    <div class="collapse mb-1" id="pub_dom_01">
-      <div class="card card-body bg-dark">
-        <!-- Optional: abstract / links -->
-      </div>
-    </div>
-
   </div>
 </div>
 
-<!-- JS (render-blocking 제거) -->
+<!-- JS -->
 <script src="./js/jquery-latest.js" defer></script>
 <script src="./js/popper.min.js" defer></script>
 <script src="./js/bootstrap.js" defer></script>
 
 <script defer>
-function changeButtonText(ids){
+function changeButtonText(selector){
   const btn = document.getElementById("controlAll");
-  const targets = ids.replaceAll('#','').split(',');
+  const elements = document.querySelectorAll(selector);
 
-  if (btn.innerText === "Close All"){
-    targets.forEach(id=>{
-      const el = document.getElementById(id);
-      if (el && el.classList.contains("show")){
+  if (btn.innerText === "Close All") {
+    elements.forEach(el => {
+      if (el.classList.contains("show")) {
         bootstrap.Collapse.getOrCreateInstance(el).hide();
       }
     });
     btn.innerText = "Open All";
   } else {
-    targets.forEach(id=>{
-      const el = document.getElementById(id);
-      if (el && !el.classList.contains("show")){
+    elements.forEach(el => {
+      if (!el.classList.contains("show")) {
         bootstrap.Collapse.getOrCreateInstance(el).show();
       }
     });
@@ -236,59 +241,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
   document.querySelectorAll('[data-bs-toggle="tooltip"]')
     .forEach(el=> new bootstrap.Tooltip(el));
 });
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-  const index_umd = {
-    Alert,
-    Button,
-    Carousel,
-    Collapse,
-    Dropdown,
-    Modal,
-    Offcanvas,
-    Popover,
-    ScrollSpy,
-    Tab,
-    Toast,
-    Tooltip
-  };
-
-  return index_umd;
-
-}));
-
-function changeButtonText(selector){
-  const btn = document.getElementById("controlAll");
-  const elements = document.querySelectorAll(selector);
-
-  if (btn.innerText === "Close All") {
-    elements.forEach(el => {
-      if (el.classList.contains("show")) {
-        bootstrap.Collapse.getOrCreateInstance(el).hide();
-      }
-    });
-    btn.innerText = "Open All";
-  } else {
-    elements.forEach(el => {
-      if (!el.classList.contains("show")) {
-        bootstrap.Collapse.getOrCreateInstance(el).show();
-      }
-    });
-    btn.innerText = "Close All";
-  }
-}
-//# sourceMappingURL=bootstrap.js.map
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
